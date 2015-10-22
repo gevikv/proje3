@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 public class About extends Fragment {
 
     public About(){
-
+           //this is about class
     }
 
     @Override

@@ -22,6 +22,7 @@
             android:layout_weight="1"
             android:textSize="@dimen/TeamNames"
             android:gravity="left"
+
             android:text="@string/test_text"
             android:id="@+id/home_name"/>
         <TextView

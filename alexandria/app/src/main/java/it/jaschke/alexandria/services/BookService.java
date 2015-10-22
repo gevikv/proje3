@@ -188,9 +188,15 @@ public class BookService extends IntentService {
             }
 
             writeBackBook(ean, title, subtitle, desc, imgUrl);
-
+            Log.i("authorTest2", "authorTest2");
             if(bookInfo.has(AUTHORS)) {
+
                 writeBackAuthors(ean, bookInfo.getJSONArray(AUTHORS));
+            }
+            else{
+                Log.v("authorTest","authorTest");
+                writeNoAuthor(ean,"Author Information is not available,");
+
             }
             if(bookInfo.has(CATEGORIES)){
                 writeBackCategories(ean,bookInfo.getJSONArray(CATEGORIES) );
@@ -199,6 +205,14 @@ public class BookService extends IntentService {
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Error ", e);
         }
+    }
+
+    private void writeNoAuthor(String ean, String noAuthor) {
+        ContentValues values= new ContentValues();
+        values.put(AlexandriaContract.AuthorEntry._ID, ean);
+        values.put(AlexandriaContract.AuthorEntry.AUTHOR, noAuthor);
+        getContentResolver().insert(AlexandriaContract.AuthorEntry.CONTENT_URI, values);
+
     }
 
     private void writeBackBook(String ean, String title, String subtitle, String desc, String imgUrl) {
